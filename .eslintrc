@@ -1,0 +1,55 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "ecmaFeatures": {
+    "experimentalObjectRestSpread": true,
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "defaultParams": true,
+    "forOf": true,
+    "jsx": true,
+    "classes": true,
+    "destructuring": true,
+    "modules": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "templateStrings": true,
+    "globalReturn": true
+  },
+  "rules": {
+    "camelcase": [ 0, { "properties": "never" } ],
+    "comma-dangle": 0,
+    "complexity": [ 1, 22 ],
+    "curly": 0,
+    "strict": [ 2, "global" ],
+    "new-cap": 0,
+    "no-constant-condition": 0,
+    "no-alert": 0,
+    "no-dupe-args": 1,
+    "no-dupe-keys": 1,
+    "no-duplicate-case": 1,
+    "no-mixed-requires": 2,
+    "no-undef": 2,
+    "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
+    "no-with": 2,
+    "quotes": 0,
+    "semi": 2,
+    "semi-spacing": [ 0, { "before": false, "after": false } ],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "no-irregular-whitespace": "error",
+    "arrow-parens": 0,
+    "keyword-spacing": ["error", { "after": true, "before": true }],
+    "space-return-throw-case": 0,
+    "babel/object-curly-spacing": 0,
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "sequelize-external-fields",
+  "version": "0.1.0",
+  "description": "Sequelize Model fields based on mirroring data from an external API",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "babel-node src/index.js",
+    "lint": "eslint src/**/*.js",
+    "compile": "babel --presets latest -d dist/ src/",
+    "prepublish": "npm run compile",
+    "test": "mocha --require babel-polyfill --compilers js:babel-register src/test/*  --timeout 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcus"
+  },
+  "keywords": [
+    "module",
+    "sequelize"
+  ],
+  "author": "Marcus Vorwaller <marcus@vorwaller.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^4.1.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.0.2",
+    "eslint": "^1.2.1",
+    "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "pg": "^6.2.4",
+    "sequelize": "~3.21"
+  }
+}
