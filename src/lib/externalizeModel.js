@@ -2,6 +2,7 @@ import afterFind from './afterFindHook';
 import { beforeUpdate, beforeBulkUpdate } from './beforeUpdateHook';
 import { beforeCreate, beforeBulkCreate } from './beforeCreateHook';
 import { beforeDestroy, beforeBulkDestroy } from './beforeDestroyHook';
+// TODO - upsert
 
 let ExternalizeModel = () => {};
 
