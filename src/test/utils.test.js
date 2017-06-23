@@ -2,6 +2,7 @@
 import utils from '../lib/utils';
 import { expect } from 'chai';
 const compareAttributes = utils.compareAttributes;
+const mapAttributes = utils.mapAttributes;
 
 describe('compareAttributes', () => {
 
@@ -66,6 +67,26 @@ describe('compareAttributes', () => {
   it('should throw an error if no attribute map is passed', () => {
     try { expect(compareAttributes({}, {}, {})).to.throw(); } catch (err) {}
     try { expect(compareAttributes(null, {}, {})).to.throw(); } catch (err) {}
+  });
+
+});
+
+describe('mapAttributes', () => {
+
+  it('should return an array of all mapped attributes', () => {
+    expect(mapAttributes(
+      {local1: 'e1', local2: 'e2', same: 'same'},
+      {local1: 1, local2: 'b', same: 'c', unused: 'foo'}
+    )).to.eql({
+      e1: 1,
+      e2: 'b',
+      same: 'c',
+    });
+  });
+
+  it('should throw an error if no attribute map is passed', () => {
+    try { expect(mapAttributes({}, {})).to.throw(); } catch (err) {}
+    try { expect(mapAttributes(null, {})).to.throw(); } catch (err) {}
   });
 
 });

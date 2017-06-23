@@ -8,5 +8,16 @@ export default {
       .compact().value();
 
     return mismatchedAttributes;
-  }
+  },
+
+  // Returns an object with the attributes that the remote source requires mapped to use the remote names
+  mapAttributes: (attributeMap, local) => {
+    if (!attributeMap || !_.keys(attributeMap.length)) throw new Error('No attribute map passed to mapAttributes');
+    return _(attributeMap)
+      .reduce((acc, nextExt, nextLoc) => {
+        acc[nextExt] = local[nextLoc];
+        return acc;
+      }, {});
+  },
+
 };

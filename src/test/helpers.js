@@ -6,6 +6,35 @@ import _ from 'lodash';
 Sequelize.Promise.onPossiblyUnhandledRejection((e) => { throw e; });
 Sequelize.Promise.longStackTraces();
 
+const defaultAttributeMap = {
+  name: 'external_name',
+  zip: 'external_zip',
+  magic_number: 'magic_number',
+};
+
+const defaultLocalValues = {
+  name: 'Company',
+  external_id: '1',
+  zip: '98117',
+  magic_number: 40
+};
+
+const defaultRemoteValues = {
+  id: '1',
+  external_name: 'Company',
+  external_zip: '98117',
+  magic_number: 40,
+};
+
+const defaultExternalizeValues = {
+  external_id: 'external_id',
+  attributeMap: defaultAttributeMap,
+  getExternal: () => defaultRemoteValues,
+  putExternal: () => {},
+  postExternal: () => {},
+  destroyExternal: () => {},
+};
+
 const Support = {
   Sequelize: Sequelize,
 
@@ -18,8 +47,8 @@ const Support = {
 
     const sequelizeOptions = _.defaults(options, {
       host: options.host || config.host,
-      //logging: (process.env.seq_log ? console.log : console.log), // todo - change to false
-      logging: (process.env.seq_log ? console.log : false), // todo - change to false
+      logging: (process.env.SEQ_LOG ? console.log : false),
+      //logging: (process.env.SEQ_LOG ? console.log : console.log),
       dialect: options.dialect || this.getTestDialect(),
       port: options.port || process.env.SEQ_PORT || config.port,
       pool: config.pool,
@@ -37,7 +66,10 @@ const Support = {
   getTestDialect: function() {
     return process.env.DIALECT || 'postgres';
   },
-
+  defaultAttributeMap,
+  defaultLocalValues,
+  defaultRemoteValues,
+  defaultExternalizeValues,
 };
 
 beforeEach(function() {
