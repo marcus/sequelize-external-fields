@@ -2,7 +2,7 @@ const destroyRemoteInstance = async (instance, options, modelOptions) => {
   if (!instance[modelOptions.external_id]) {
     throw new Error(`DESTROY: local instance ${instance.id} is missing a remote id ${modelOptions.external_id}`);
   }
-  const destroyedRemote = await modelOptions.destroyExternal(instance[modelOptions.external_id]);
+  const destroyedRemote = await modelOptions.destroyExternal(instance[modelOptions.external_id], instance);
 
   if (!destroyedRemote) {
     console.log('DESTROY: Remote instance could not be destroyed');

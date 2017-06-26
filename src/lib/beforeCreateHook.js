@@ -6,7 +6,7 @@ const createRemoteInstance = async (instance, options, modelOptions) => {
     throw new Error(`CREATE: local instance ${instance.id} is missing a remote id ${modelOptions.external_id}`);
   }
   const mappedAttributes = mapAttributes(modelOptions.attributeMap, instance);
-  const createdRemote = await modelOptions.postExternal(instance[modelOptions.external_id], mappedAttributes);
+  const createdRemote = await modelOptions.postExternal(instance[modelOptions.external_id], mappedAttributes, instance);
 
   if (createdRemote) {
     instance[modelOptions.external_id] = createdRemote.id;

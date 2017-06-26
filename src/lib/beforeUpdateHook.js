@@ -6,7 +6,7 @@ const updateRemoteInstance = async (instance, options, modelOptions) => {
     throw new Error(`UPDATE: local instance ${instance.id} is missing a remote id ${modelOptions.external_id}`);
   }
   const mappedAttributes = mapAttributes(modelOptions.attributeMap, instance);
-  const updatedRemote = await modelOptions.putExternal(instance[modelOptions.external_id], mappedAttributes);
+  const updatedRemote = await modelOptions.putExternal(instance[modelOptions.external_id], mappedAttributes, instance);
 
   if (!updatedRemote) {
     console.log('UPDATE: Remote instance is missing. Calling destroy on the local instance');
