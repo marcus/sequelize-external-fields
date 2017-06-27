@@ -16,4 +16,4 @@ ExternalizeModel.prototype.externalizeModel = (Model, modelOptions= {}) => {
   Model.beforeBulkDestroy('beforeBulkDestroy', (instanceOptions, fn) => beforeBulkDestroy(instanceOptions, fn, modelOptions));
 };
 
-export default new ExternalizeModel();
+module.exports = new ExternalizeModel();
