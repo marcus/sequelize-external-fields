@@ -1,1 +1,8 @@
-{ "presets": ["latest"] }
+{
+    "plugins": [
+        "transform-runtime"
+    ],
+    "presets": [
+        "latest"
+    ]
+}
