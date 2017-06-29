@@ -58,10 +58,6 @@ describe('create', function() {
 
   });
 
-  it('should throw an error if no external_id is passed to postExternal', async () => {
-
-  });
-
   xit('should throw an error and not create the local instance if the remote create fails ', async () => {
 
   });

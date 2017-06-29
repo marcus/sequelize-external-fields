@@ -2,9 +2,6 @@ import utils from './utils';
 const { mapAttributes } = utils;
 
 const createRemoteInstance = async (instance, options, modelOptions) => {
-  if (!instance[modelOptions.external_id]) {
-    throw new Error(`CREATE: local instance ${instance.id} is missing a remote id ${modelOptions.external_id}`);
-  }
   const mappedAttributes = mapAttributes(modelOptions.attributeMap, instance);
   const createdRemote = await modelOptions.postExternal(instance[modelOptions.external_id], mappedAttributes, instance);
 
