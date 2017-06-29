@@ -2,6 +2,11 @@ import utils from './utils';
 const { mapAttributes } = utils;
 
 const updateRemoteInstance = async (instance, options, modelOptions) => {
+  if (modelOptions.bypassFn && modelOptions.bypassFn(instance)) {
+    console.log('Bypassing update of ${instance.id} because bypass function was succesfully invoked');
+    return true;
+  }
+
   if (!instance[modelOptions.external_id]) {
     throw new Error(`UPDATE: local instance ${instance.id} is missing a remote id ${modelOptions.external_id}`);
   }

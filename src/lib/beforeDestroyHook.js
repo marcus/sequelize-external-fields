@@ -1,4 +1,9 @@
 const destroyRemoteInstance = async (instance, options, modelOptions) => {
+  if (modelOptions.bypassFn && modelOptions.bypassFn(instance)) {
+    console.log('Bypassing destroy of ${instance.id} because bypass function was succesfully invoked');
+    return true;
+  }
+
   if (!instance[modelOptions.external_id]) {
     throw new Error(`DESTROY: local instance ${instance.id} is missing a remote id ${modelOptions.external_id}`);
   }

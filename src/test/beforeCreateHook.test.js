@@ -62,8 +62,11 @@ describe('create', function() {
 
   });
 
+  xit('should bypass the remote create if the bypassFn is defined and returns true', async () => {
+  });
+
   // BULK create
-  it.only('should create multiple remote instances', async () => {
+  it('should create multiple remote instances', async () => {
     ExternalizeModel.externalizeModel(Company, externalizeValues);
     await Company.bulkCreate([
       Object.assign({}, defaultLocalValues, { name: 'CO1' }),
@@ -71,7 +74,7 @@ describe('create', function() {
       Object.assign({}, defaultLocalValues, { name: 'CO3' }),
     ]);
     const allCompanies = await ExternalCompany.findAll();
-    expect(allCompanies.map(c => c.external_name)).to.eql(['CO1', 'CO2', 'CO3']);
+    expect(allCompanies.map(c => c.external_name).sort()).to.eql(['CO1', 'CO2', 'CO3']);
   });
 
   xit('should create multiple remote instances created instances or an empty array', async () => {

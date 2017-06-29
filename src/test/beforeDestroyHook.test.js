@@ -52,7 +52,10 @@ describe('destroy', function() {
     expect(e1b).to.be.null;
   });
 
-  it('should throw an error if no external_id is passed to destroyExternal', async () => {
+  xit('should bypass the remote destroy if the bypassFn is defined and returns true', async () => {
+  });
+
+  xit('should throw an error if no external_id is passed to destroyExternal', async () => {
 
   });
 

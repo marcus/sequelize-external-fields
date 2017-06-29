@@ -103,6 +103,9 @@ describe('find', function() {
 
   });
 
+  xit('should bypass the remote find if the bypassFn is defined and returns true', async () => {
+  });
+
   // After bulk find
   it('should update all local instances if the remote versions are different from the local version', async () => {
     ExternalizeModel.externalizeModel(Company,

@@ -55,6 +55,27 @@ describe('update', function() {
     expect(updatedCompany.name).to.equal('Updated Company');
   });
 
+  it('should bypass the remote update if the bypassFn is defined and returns true', async () => {
+    expect(await ExternalCompany.findOne({ where: { external_name: 'Company' } })).to.be.null;
+    const putExternal = async (id, attributes) => await ExternalCompany.update(attributes, { where: { id }, returning: true });
+    const postExternal = async (id, attributes) => await ExternalCompany.create(attributes, { returning: true });
+    const getExternal = async (id) => await ExternalCompany.findById(id);
+
+    ExternalizeModel.externalizeModel(Company, Object.assign({},
+      defaultExternalizeValues,
+      { putExternal, getExternal, postExternal, bypassFn: (i) => {
+        if (i.id) return true;
+      }}));
+
+    const company = await Company.create(defaultLocalValues);
+    const updatedCompany = await company.update({name: 'Updated Company'}, { returning: true });
+
+    expect(updatedCompany.name).to.equal('Updated Company');
+
+    expect(await ExternalCompany.findOne({ where: { external_name: 'Company' } })).not.to.be.null;
+    expect(await ExternalCompany.findOne({ where: { external_name: 'Updated Company' } })).to.be.null;
+  });
+
   it('should throw an error if no external_id is passed to putExternal', async () => {
 
   });

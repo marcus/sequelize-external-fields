@@ -2,6 +2,11 @@ import utils from './utils';
 const { mapAttributes } = utils;
 
 const createRemoteInstance = async (instance, options, modelOptions) => {
+  if (modelOptions.bypassFn && modelOptions.bypassFn(instance)) {
+    console.log('Bypassing create because bypass function was succesfully invoked');
+    return true;
+  }
+
   const mappedAttributes = mapAttributes(modelOptions.attributeMap, instance);
   const createdRemote = await modelOptions.postExternal(instance[modelOptions.external_id], mappedAttributes, instance);
 

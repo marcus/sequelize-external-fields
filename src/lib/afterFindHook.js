@@ -3,6 +3,11 @@ import utils from './utils';
 const { compareAttributes } = utils;
 
 const compareAndUpdateInstance = async (instance, options, modelOptions) => {
+  if (modelOptions.bypassFn && modelOptions.bypassFn(instance)) {
+    console.log('Bypassing find of ${instance.id} because bypass function was succesfully invoked');
+    return true;
+  }
+
   if (!instance[modelOptions.external_id]) {
     throw new Error(`FIND: local instance ${instance.id} is missing a remote id ${modelOptions.external_id}`);
   }
