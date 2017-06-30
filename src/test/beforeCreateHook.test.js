@@ -23,7 +23,7 @@ describe('create', function() {
     });
 
     putExternal = async (id, attributes) => await ExternalCompany.update(attributes, { where: { id }, returning: true });
-    postExternal = async (id, attributes) => await ExternalCompany.create(attributes, { returning: true });
+    postExternal = async (attributes) => await ExternalCompany.create(attributes, { returning: true });
     getExternal = async (id) => await ExternalCompany.findById(id);
     destroyExternal = async (id) => {
       await ExternalCompany.destroy({ where:{ id }});
@@ -45,7 +45,7 @@ describe('create', function() {
   it('should create the remote instance then create the local instance', async () => {
     expect(await ExternalCompany.findOne({ where: { external_name: 'Company' } })).to.be.null;
 
-    const postExternal = async (id, attributes) => await ExternalCompany.create(attributes, { returning: true });
+    const postExternal = async (attributes) => await ExternalCompany.create(attributes, { returning: true });
     const getExternal = async (id) => await ExternalCompany.findById(id);
 
     ExternalizeModel.externalizeModel(Company, Object.assign({}, externalizeValues, { postExternal, getExternal }));

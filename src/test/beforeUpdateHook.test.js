@@ -23,7 +23,7 @@ describe('update', function() {
     });
 
     putExternal = async (id, attributes) => await ExternalCompany.update(attributes, { where: { id }, returning: true });
-    postExternal = async (id, attributes) => await ExternalCompany.create(attributes, { returning: true });
+    postExternal = async (attributes) => await ExternalCompany.create(attributes, { returning: true });
     getExternal = async (id) => await ExternalCompany.findById(id);
     destroyExternal = async (id) => {
       await ExternalCompany.destroy({ where:{ id }});
@@ -44,7 +44,7 @@ describe('update', function() {
   it('should update the remote instance then update the local instance', async () => {
     expect(await ExternalCompany.findOne({ where: { external_name: 'Company' } })).to.be.null;
     const putExternal = async (id, attributes) => await ExternalCompany.update(attributes, { where: { id }, returning: true });
-    const postExternal = async (id, attributes) => await ExternalCompany.create(attributes, { returning: true });
+    const postExternal = async (attributes) => await ExternalCompany.create(attributes, { returning: true });
     const getExternal = async (id) => await ExternalCompany.findById(id);
 
     ExternalizeModel.externalizeModel(Company, Object.assign({}, defaultExternalizeValues, { putExternal, getExternal, postExternal }));
@@ -58,7 +58,7 @@ describe('update', function() {
   it('should bypass the remote update if the bypassFn is defined and returns true', async () => {
     expect(await ExternalCompany.findOne({ where: { external_name: 'Company' } })).to.be.null;
     const putExternal = async (id, attributes) => await ExternalCompany.update(attributes, { where: { id }, returning: true });
-    const postExternal = async (id, attributes) => await ExternalCompany.create(attributes, { returning: true });
+    const postExternal = async (attributes) => await ExternalCompany.create(attributes, { returning: true });
     const getExternal = async (id) => await ExternalCompany.findById(id);
 
     ExternalizeModel.externalizeModel(Company, Object.assign({},

@@ -22,7 +22,7 @@ describe('find', function() {
     });
 
     putExternal = async (id, attributes) => await ExternalCompany.update(attributes, { where: { id }, returning: true });
-    postExternal = async (id, attributes) => await ExternalCompany.create(attributes, { returning: true });
+    postExternal = async (attributes) => await ExternalCompany.create(attributes, { returning: true });
     getExternal = async (id) => await ExternalCompany.findById(id);
 
     externalizeValues = {

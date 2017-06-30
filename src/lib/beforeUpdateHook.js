@@ -3,7 +3,7 @@ const { mapAttributes } = utils;
 
 const updateRemoteInstance = async (instance, options, modelOptions) => {
   if (modelOptions.bypassFn && modelOptions.bypassFn(instance)) {
-    console.log('Bypassing update of ${instance.id} because bypass function was succesfully invoked');
+    console.log(`Bypassing update of ${instance.id} because bypass function was succesfully invoked`);
     return true;
   }
 

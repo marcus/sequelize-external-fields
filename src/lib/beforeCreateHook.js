@@ -8,7 +8,7 @@ const createRemoteInstance = async (instance, options, modelOptions) => {
   }
 
   const mappedAttributes = mapAttributes(modelOptions.attributeMap, instance);
-  const createdRemote = await modelOptions.postExternal(instance[modelOptions.external_id], mappedAttributes, instance);
+  const createdRemote = await modelOptions.postExternal(mappedAttributes, instance);
 
   if (createdRemote) {
     instance[modelOptions.external_id] = createdRemote.id;
