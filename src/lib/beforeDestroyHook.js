@@ -1,6 +1,6 @@
 const destroyRemoteInstance = async (instance, options, modelOptions) => {
   if (modelOptions.bypassFn && modelOptions.bypassFn(instance)) {
-    console.log('Bypassing destroy of ${instance.id} because bypass function was succesfully invoked');
+    console.log(`Bypassing destroy of ${instance.id} because bypass function was succesfully invoked`);
     return true;
   }
 

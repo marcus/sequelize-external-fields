@@ -4,7 +4,7 @@ const { compareAttributes } = utils;
 
 const compareAndUpdateInstance = async (instance, options, modelOptions) => {
   if (modelOptions.bypassFn && modelOptions.bypassFn(instance)) {
-    console.log('Bypassing find of ${instance.id} because bypass function was succesfully invoked');
+    console.log(`Bypassing find of ${instance.id} because bypass function was succesfully invoked`);
     return true;
   }
 
