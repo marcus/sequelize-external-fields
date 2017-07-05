@@ -10,16 +10,13 @@ const createRemoteInstance = async (instance, options, modelOptions) => {
   const mappedAttributes = mapAttributes(modelOptions.attributeMap, instance);
   const createdRemote = await modelOptions.postExternal(mappedAttributes, instance);
 
-  if (createdRemote) {
+  if (createdRemote && createdRemote.id) {
     instance[modelOptions.external_id] = createdRemote.id;
     await instance.save({ hooks: false });
-  }
-
-  if (!createdRemote) {
+    return createdRemote;
+  } else {
     console.log('CREATE: Remote instance could not be created');
     return null;
-  } else {
-    return createdRemote;
   }
 };
 
